@@ -1,10 +1,12 @@
 const express = require("express");
 const mongojs = require("mongojs");
+const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const databaseUrl = "mongodb://readonly:turner@ds043348.mongolab.com:43348/dev-challenge";
 var collections = ["Titles"];
-
+const BASEURL = "https://www.omdbapi.com/?t=";
+const APIKEY = "&apikey=trilogy";
 
 // Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
@@ -34,6 +36,44 @@ app.get("/api/movie/:TitleName", function (req, res) {
     }
   });
 });
+
+app.get("/api/all", function (req, res) {
+  let newArr = [];
+  // console.log(req.params);
+  // Query: In our database, go to the Movies collection, then "find one with the name from the params"
+  db.Titles.find({}, function (err, allMovies) {
+    // Log any errors if the server encounters one
+    if (err) {
+      console.log(err);
+    }
+    // Otherwise, send the result of this query to the browser
+    else {
+
+     /* allMovies.forEachDone(function (movie) {
+        axios.get(BASEURL + movie.TitleName + APIKEY)
+          .then(function (response) {
+            movie.image = response.data.Poster;
+            newArr.push(movie);
+            // console.log(response.data.Poster); // ex.: { user: 'Your User'}
+            // console.log(response.status); // ex.: 200
+          }, function () {
+            console.log('done');
+          });
+
+      });*/
+      // console.log(newArr);
+      res.json(allMovies);
+    }
+  });
+});
+
+/*
+arr.forEachDone(function (item) {
+  console.log(item);
+}, function () {
+  console.log('done');
+});
+*/
 
 // const URL = 'mongodb://readonly:turner@ds043348.mongolab.com:43348/dev-challenge';
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({ query, handleInputChange, handleFormSubmit }) {
+function Form({ query, handleInputChange, handleFormSubmit, getThemAll }) {
   return (
     <form>
       <div className="form-group">
@@ -26,6 +26,14 @@ function Form({ query, handleInputChange, handleFormSubmit }) {
         >
           Search
         </button>
+        <button
+          onClick={getThemAll}
+          type="submit"
+          className="btn btn-lg btn-success float-right mr-4"
+        >
+          All Movies
+        </button>
+
       </div>
     </form>
   );

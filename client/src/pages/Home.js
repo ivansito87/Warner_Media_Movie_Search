@@ -80,10 +80,27 @@ class Home extends Component {
   handleSaved = e => {
     e.preventDefault();
     this.resetState();
+    if (!this.state.favoriteMovies.length) {
+      this.setState({message: "Oops! no movies saved  🤡"})
+    }
     console.log(this.state.favoriteMovies);
     // console.log("Chuchitoos --->");
 };
 
+
+
+  getThemAll = event => {
+    API.getAll()
+      .then(res => res.data.forEach(movie => {
+        API.image(movie.TitleName)
+          .then(res => {
+            movie.image = res.data.Poster;
+            this.setState({books: [...this.state.books, movie]})
+          })
+          .catch(err => console.log(err.message));
+      }))
+      .catch(err => console.log(err.message));
+  };
 
   render() {
     return (
@@ -105,6 +122,7 @@ class Home extends Component {
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
+                getThemAll={this.getThemAll}
                 query={this.state.query}
               />
             </Card>
@@ -120,7 +138,7 @@ class Home extends Component {
                       key={book.TitleName}
                       TitleName={book.TitleName}
                       description={book.Storylines[0].Description}
-                      image={this.state.image || book.image}
+                      image={this.state.image || book.image || "http://izuum.com/noimage.jpg"}
                       /*subtitle={book.volumeInfo.subtitle}
                       link={book.volumeInfo.infoLink}
                       authors={book.volumeInfo.authors.join(", ")}
