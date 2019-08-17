@@ -1,6 +1,8 @@
 import axios from "axios";
-
+const BASEURL = "https://www.omdbapi.com/?t=";
+const APIKEY = "&apikey=trilogy";
 export default {
+  /*
   // Gets books from the Google API
   getBooks: function(q) {
     return axios.get("/api/google", { params: { q: "title:" + q } });
@@ -17,4 +19,14 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   }
+  */
+
+  getMovie: function (movie) {
+    return axios.get("/api/movie/" + movie)
+  },
+
+  image: function (title) {
+    return axios.get(BASEURL + title + APIKEY);
+  }
+
 };

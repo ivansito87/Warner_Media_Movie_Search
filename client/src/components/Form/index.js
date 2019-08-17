@@ -1,19 +1,19 @@
 import React from "react";
 
-function Form({ q, handleInputChange, handleFormSubmit }) {
+function Form({ query, handleInputChange, handleFormSubmit }) {
   return (
     <form>
       <div className="form-group">
         <label htmlFor="Query">
-          <strong>Book</strong>
+          <h3><strong>Enter Movie Title</strong></h3>
         </label>
         <input
           className="form-control"
           id="Title"
           type="text"
-          value={q}
-          placeholder="Ready Player One"
-          name="q"
+          value={query}
+          placeholder="Ex: 2 Fast & 2 Furious"
+          name="query"
           onChange={handleInputChange}
           required
         />
