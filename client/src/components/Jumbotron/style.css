@@ -1,13 +1,12 @@
 .jumbotron {
   padding: 100px;
-    background-color: #20164d !important;
+    background-image: url("../../images/hbo2.jpeg") !important;
     color: aliceblue !important;
 }
  .btn {
      background: #fff;
      /*border: none;*/
-     color: #8385aa;
-     border: 1px solid #c8cbf2;
+     border: none;
      font-weight: 700;
      font-size: 17px;
      padding: 8px 16px;
@@ -37,10 +36,16 @@
 }
 
 .btn-outline-success {
-    background: linear-gradient(130deg, #56a15c, #a5d275);
+    background: linear-gradient(130deg, #664ea2, #4d6db0);
     color: aliceblue;
 }
 
 .btn-outline-warning {
-    background: linear-gradient(130deg, #ffaf0e, #ffc089);
+    margin-right: 40px;
+    color: #000;
+    background: linear-gradient(130deg, rgba(120, 93, 170, 0.28), rgba(230, 31, 73, 0.33));
+}
+
+.btn-outline-warning:hover  {
+    background: linear-gradient(130deg, #785daa, #e61f49);
 }
