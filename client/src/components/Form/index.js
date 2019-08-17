@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({ query, handleInputChange, handleFormSubmit, getThemAll }) {
+function Form({query, handleInputChange, handleFormSubmit, getThemAll}) {
   return (
     <form>
       <div className="form-group">

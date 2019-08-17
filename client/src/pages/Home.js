@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import Form from "../components/Form";
-import Book from "../components/Book";
+import Movie from "../components/Movie";
 import Footer from "../components/Footer";
 import API from "../utils/API";
 import {Col, Row, Container} from "../components/Grid";
@@ -12,7 +12,7 @@ import Nav from "../components/Nav";
 
 class Home extends Component {
   state = {
-    books: [],
+    movies: [],
     image: null,
     website: null,
     query: "",
@@ -22,10 +22,10 @@ class Home extends Component {
 
   resetState = () => {
     this.setState({
-      books: [],
+      movies: [],
       image: null,
       query: "",
-      message: "Search For A Book To Begin!"
+      message: "Search For A Movie To Begin!"
     })
   };
 
@@ -41,13 +41,13 @@ class Home extends Component {
       .then(res => {
         this.getImage(res.data.TitleName);
         this.setState({
-          books: [...this.state.books, res.data]
+          movies: [...this.state.movies, res.data]
         });
-        console.log("logging state ->", this.state.books);
+        console.log("logging state ->", this.state.movies);
       })
       .catch(() =>
         this.setState({
-          books: [],
+          movies: [],
           message: "No New Movies Found, Try a Different Query"
         })
       );
@@ -68,10 +68,10 @@ class Home extends Component {
 
   };
 
-  handleMoveFavorite = (book, image, website) => {
-    book.image = image;
-    book.website = website;
-    this.setState({favoriteMovies: [...this.state.favoriteMovies, book]}, () => {
+  handleMoveFavorite = (movie, image, website) => {
+    movie.image = image;
+    movie.website = website;
+    this.setState({favoriteMovies: [...this.state.favoriteMovies, movie]}, () => {
       console.log("Shishitaa -->", this.state.favoriteMovies);
     })
   };
@@ -93,7 +93,7 @@ class Home extends Component {
           .then(res => {
             movie.image = res.data.Poster;
             movie.website = res.data.Website;
-            this.setState({books: [...this.state.books, movie]})
+            this.setState({movies: [...this.state.movies, movie]})
           })
           .catch(err => console.log(err.message));
       }))
@@ -129,18 +129,18 @@ class Home extends Component {
           <Row>
             <Col size="md-12">
               <Card title="Results">
-                {(this.state.books.length || this.state.favoriteMovies.length) ? (
+                {(this.state.movies.length || this.state.favoriteMovies.length) ? (
                   <List>
-                    {(this.state.books.length ? this.state.books : this.state.favoriteMovies).map(book => (
-                      <Book
-                        key={book.TitleName}
-                        TitleName={book.TitleName}
-                        description={book.Storylines[0].Description}
-                        image={this.state.image || book.image || require("../images/imageNotFound.jpg")}
-                        link={this.state.website || book.website}
+                    {(this.state.movies.length ? this.state.movies : this.state.favoriteMovies).map(movie => (
+                      <Movie
+                        key={movie.TitleName}
+                        TitleName={movie.TitleName}
+                        description={movie.Storylines[0].Description}
+                        image={this.state.image || movie.image || require("../images/imageNotFound.jpg")}
+                        link={this.state.website || movie.website}
                         Button={() => (
                           <button
-                            onClick={() => this.handleMoveFavorite(book, this.state.image || book.image || require("../images/imageNotFound.jpg"), this.state.website || book.website)}
+                            onClick={() => this.handleMoveFavorite(movie, this.state.image || movie.image || require("../images/imageNotFound.jpg"), this.state.website || movie.website)}
                             className="btn btn-outline-primary ml-2 pull-right"
                           >
                             Save
