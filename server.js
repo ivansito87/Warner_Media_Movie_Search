@@ -4,7 +4,10 @@ const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const databaseUrl = "mongodb://readonly:turner@ds043348.mongolab.com:43348/dev-challenge";
-var collections = ["Titles"];
+const collections = ["Titles"];
+
+// Need Images to display so I used OMD API to get the images and the links
+// since the DB doesn't have them.
 const BASEURL = "https://www.omdbapi.com/?t=";
 const APIKEY = "&apikey=trilogy";
 
