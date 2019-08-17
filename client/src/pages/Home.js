@@ -8,7 +8,7 @@ import API from "../utils/API";
 import {Col, Row, Container} from "../components/Grid";
 import {List} from "../components/List";
 import Nav from "../components/Nav";
-// import axios from "axios";
+
 
 class Home extends Component {
   state = {
@@ -31,8 +31,6 @@ class Home extends Component {
 
   handleInputChange = event => {
     const {name, value} = event.target;
-    // console.log(name);
-    // console.log(value);
     this.setState({
       [name]: value
     });
@@ -42,7 +40,6 @@ class Home extends Component {
     API.getMovie(this.state.query)
       .then(res => {
         this.getImage(res.data.TitleName);
-        // console.log(res.data);
         this.setState({
           books: [...this.state.books, res.data]
         });
@@ -59,7 +56,7 @@ class Home extends Component {
   getImage = title => {
 
     API.image(title)
-      .then(res => this.setState({image: res.data.Poster, website:res.data.Website}))
+      .then(res => this.setState({image: res.data.Poster, website: res.data.Website}))
       .catch(err => console.log(err.message));
 
   };
@@ -75,7 +72,7 @@ class Home extends Component {
     book.image = image;
     book.website = website;
     this.setState({favoriteMovies: [...this.state.favoriteMovies, book]}, () => {
-      console.log("Shishitaa -->",this.state.favoriteMovies);
+      console.log("Shishitaa -->", this.state.favoriteMovies);
     })
   };
 
@@ -86,9 +83,7 @@ class Home extends Component {
       this.setState({message: "Oops! no movies saved  🤡"})
     }
     console.log(this.state.favoriteMovies);
-    // console.log("Chuchitoos --->");
-};
-
+  };
 
 
   getThemAll = event => {
@@ -108,66 +103,61 @@ class Home extends Component {
   render() {
     return (
       <>
-      <Nav handleSaved={this.handleSaved}
-      />
-      <Container>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1 className="text-center">
-                <strong>(React) Movie Search</strong>
-              </h1>
-              <h2 className="text-center">Search for and Save Movies of your Interest.</h2>
-            </Jumbotron>
-          </Col>
-          <Col size="md-12">
-            <Card title="Movie Search" icon="fas fa-video">
-              <Form
-                handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
-                getThemAll={this.getThemAll}
-                query={this.state.query}
-              />
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-12">
-            <Card title="Results">
-              {(this.state.books.length || this.state.favoriteMovies.length) ? (
-                <List>
-                  {(this.state.books.length ? this.state.books : this.state.favoriteMovies ).map(book => (
-                    <Book
-                      key={book.TitleName}
-                      TitleName={book.TitleName}
-                      description={book.Storylines[0].Description}
-                      image={this.state.image || book.image || require("../images/imageNotFound.jpg")}
-                      link={this.state.website || book.website}
-                      /*subtitle={book.volumeInfo.subtitle}
-                      link={book.volumeInfo.infoLink}
-                      authors={book.volumeInfo.authors.join(", ")}
-                      description={book.volumeInfo.description}
-                      image={book.volumeInfo.imageLinks.thumbnail}*/
-                      Button={() => (
-                        <button
-                          onClick={() => this.handleMoveFavorite(book, this.state.image || book.image || require("../images/imageNotFound.jpg"), this.state.website || book.website)}
-                          className="btn btn-primary ml-2 pull-right"
-                        >
-                          Save
-                        </button>
-                      )}
-                    />
-                  ))}
-                </List>
-              ) : (
-                <h2 className="text-center">{this.state.message}</h2>
-              )}
-            </Card>
-          </Col>
-        </Row>
-        <Footer/>
-      </Container>
-        </>
+        <Nav handleSaved={this.handleSaved}
+        />
+        <Container>
+          <Row>
+            <Col size="md-12">
+              <Jumbotron>
+                <h1 className="text-center">
+                  <strong>Hi, My Name is Ivan Rendon<br/> Welcome to my Movie Search</strong>
+                </h1>
+                <h2 className="text-center">Search for and Save Movies of your Interest.</h2>
+              </Jumbotron>
+            </Col>
+            <Col size="md-12">
+              <Card title="Movie Search" icon="fas fa-video">
+                <Form
+                  handleInputChange={this.handleInputChange}
+                  handleFormSubmit={this.handleFormSubmit}
+                  getThemAll={this.getThemAll}
+                  query={this.state.query}
+                />
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
+              <Card title="Results">
+                {(this.state.books.length || this.state.favoriteMovies.length) ? (
+                  <List>
+                    {(this.state.books.length ? this.state.books : this.state.favoriteMovies).map(book => (
+                      <Book
+                        key={book.TitleName}
+                        TitleName={book.TitleName}
+                        description={book.Storylines[0].Description}
+                        image={this.state.image || book.image || require("../images/imageNotFound.jpg")}
+                        link={this.state.website || book.website}
+                        Button={() => (
+                          <button
+                            onClick={() => this.handleMoveFavorite(book, this.state.image || book.image || require("../images/imageNotFound.jpg"), this.state.website || book.website)}
+                            className="btn btn-outline-primary ml-2 pull-right"
+                          >
+                            Save
+                          </button>
+                        )}
+                      />
+                    ))}
+                  </List>
+                ) : (
+                  <h2 className="text-center">{this.state.message}</h2>
+                )}
+              </Card>
+            </Col>
+          </Row>
+          <Footer/>
+        </Container>
+      </>
     );
   }
 }

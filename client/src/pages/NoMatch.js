@@ -9,7 +9,7 @@ function NoMatch() {
       <Row>
         <Col size="md-12">
           <Jumbotron>
-            <h1 className="text-center display-1 font-weight-bolder">404 Page Not Found</h1>
+            <h1 className="text-center display-1 font-weight-bold">404 Page Not Found</h1>
             <h1 className="text-center display-1">
               <span role="img" aria-label="Face With Rolling Eyes Emoji">
                 🙄

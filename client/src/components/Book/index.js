@@ -29,9 +29,9 @@ function Book({TitleName, subtitle, authors, link, description, image, Button })
         <Col size="md-4 float-right text-right">
           <div className="float-right text-right pull-right">
             <a className="btn btn-light" target="_blank" rel="noopener noreferrer" href={link}>
-              View
+              More
             </a>
-            <Button className="pull-right"/>
+            <Button className="pull-right btn-outline-primary"/>
           </div>
         </Col>
       </Row>

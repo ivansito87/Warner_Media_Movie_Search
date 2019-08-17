@@ -22,14 +22,14 @@ function Form({ query, handleInputChange, handleFormSubmit, getThemAll }) {
         <button
           onClick={handleFormSubmit}
           type="submit"
-          className="btn btn-lg btn-danger float-right"
+          className="btn btn-lg btn-outline-info float-right"
         >
           Search
         </button>
         <button
           onClick={getThemAll}
           type="submit"
-          className="btn btn-lg btn-success float-right mr-4"
+          className="btn btn-lg btn-outline-success float-right mr-4"
         >
           All Movies
         </button>
