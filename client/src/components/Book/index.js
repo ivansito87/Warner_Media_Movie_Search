@@ -18,20 +18,20 @@ function Book({TitleName, subtitle, authors, link, description, image, Button })
         </Col>
       </Row>
       <Row>
-        <Col size="12 sm-4 md-2">
+        <Col size="12 sm-4 md-4">
           <img className="img-thumbnail img-fluid w-300 h-500" src={image} alt={TitleName} />
         </Col>
-        <Col size="12 sm-8 md-10">
+        <Col size="12 sm-8 md-8">
           <p>{description}</p>
         </Col>
       </Row>
-      <Row className="float-right text-right pull-right">
+      <Row className="pull-right">
         <Col size="md-4 float-right text-right">
-          <div className="btn-container float-right text-right pull-right">
+          <div className="float-right text-right pull-right">
             <a className="btn btn-light" target="_blank" rel="noopener noreferrer" href={link}>
               View
             </a>
-            <Button className=" btn-container float-right text-right pull-right"/>
+            <Button className="pull-right"/>
           </div>
         </Col>
       </Row>

@@ -15,6 +15,7 @@ class Home extends Component {
     books: [],
     image: null,
     query: "",
+    favoriteMovies: [],
     message: "Search For A Movie To Begin!"
   };
 
@@ -69,24 +70,26 @@ class Home extends Component {
 
   };
 
-  /*handleBookSave = id => {
-    const book = this.state.books.find(book => book.id === id);
+  handleMoveFavorite = (book, image) => {
+    book.image = image;
+    this.setState({favoriteMovies: [...this.state.favoriteMovies, book]}, () => {
+      console.log("Shishitaa -->",this.state.favoriteMovies);
+    })
+  };
 
-    API.saveBook({
-      googleId: book.id,
-      title: book.volumeInfo.title,
-      subtitle: book.volumeInfo.subtitle,
-      link: book.volumeInfo.infoLink,
-      authors: book.volumeInfo.authors,
-      description: book.volumeInfo.description,
-      image: book.volumeInfo.imageLinks.thumbnail
-    }).then(() => this.getMovie());
-  };*/
+  handleSaved = e => {
+    e.preventDefault();
+    this.resetState();
+    console.log(this.state.favoriteMovies);
+    // console.log("Chuchitoos --->");
+};
+
 
   render() {
     return (
       <>
-      <Nav />
+      <Nav handleSaved={this.handleSaved}
+      />
       <Container>
         <Row>
           <Col size="md-12">
@@ -110,14 +113,14 @@ class Home extends Component {
         <Row>
           <Col size="md-12">
             <Card title="Results">
-              {this.state.books.length ? (
+              {(this.state.books.length || this.state.favoriteMovies.length) ? (
                 <List>
-                  {this.state.books.map(book => (
+                  {(this.state.books.length ? this.state.books : this.state.favoriteMovies ).map(book => (
                     <Book
                       key={book.TitleName}
                       TitleName={book.TitleName}
                       description={book.Storylines[0].Description}
-                      image={this.state.image}
+                      image={this.state.image || book.image}
                       /*subtitle={book.volumeInfo.subtitle}
                       link={book.volumeInfo.infoLink}
                       authors={book.volumeInfo.authors.join(", ")}
@@ -125,7 +128,7 @@ class Home extends Component {
                       image={book.volumeInfo.imageLinks.thumbnail}*/
                       Button={() => (
                         <button
-                          /*onClick={() => this.handleBookSave(book.id)}*/
+                          onClick={() => this.handleMoveFavorite(book, this.state.image)}
                           className="btn btn-primary ml-2 pull-right"
                         >
                           Save
