@@ -11,6 +11,7 @@ import Nav from "../components/Nav";
 
 
 class Home extends Component {
+
   state = {
     movies: [],
     image: null,
@@ -36,43 +37,38 @@ class Home extends Component {
     });
   };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.resetState();
+    this.getMovie();
+  };
+
   getMovie = () => {
     API.getMovie(this.state.query)
       .then(res => {
-        this.getImage(res.data.TitleName);
-        this.setState({
-          movies: [...this.state.movies, res.data]
-        });
+        API.image(res.data.TitleName)
+          .then(response => {
+            const movie = res.data;
+            movie.image = response.data.Poster;
+            movie.website = response.data.Website;
+            this.setState({movies: [...this.state.movies, movie]})
+          })
+          .catch(err => console.log(err.message));
         console.log("logging state ->", this.state.movies);
       })
       .catch(() =>
         this.setState({
           movies: [],
-          message: "No New Movies Found, Try a Different Query"
+          message: "No Movies Found, Try a Different Query"
         })
       );
   };
 
-  getImage = title => {
-
-    API.image(title)
-      .then(res => this.setState({image: res.data.Poster, website: res.data.Website}))
-      .catch(err => console.log(err.message));
-
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.resetState();
-    this.getMovie();
-
-  };
-
-  handleMoveFavorite = (movie, image, website) => {
-    movie.image = image;
-    movie.website = website;
-    this.setState({favoriteMovies: [...this.state.favoriteMovies, movie]}, () => {
-      console.log("Shishitaa -->", this.state.favoriteMovies);
+  handleMoveFavorite = (movie) => {
+    movie.image = movie.image ? movie.image : require("../images/imageNotFound.jpg");
+    this.setState({
+      favoriteMovies: [...this.state.favoriteMovies, movie]
+    }, () => {
     })
   };
 
@@ -131,18 +127,19 @@ class Home extends Component {
               <Card title="Results">
                 {(this.state.movies.length || this.state.favoriteMovies.length) ? (
                   <List>
-                    {(this.state.movies.length ? this.state.movies : this.state.favoriteMovies).map(movie => (
+                    {(this.state.movies.length ?
+                      this.state.movies :
+                      this.state.favoriteMovies).map(movie => (
                       <Movie
                         key={movie.TitleName}
                         TitleName={movie.TitleName}
                         description={movie.Storylines[0].Description}
-                        image={this.state.image || movie.image || require("../images/imageNotFound.jpg")}
-                        link={this.state.website || movie.website}
+                        image={movie.image || require("../images/imageNotFound.jpg")}
+                        link={movie.website}
                         Button={() => (
                           <button
-                            onClick={() => this.handleMoveFavorite(movie, this.state.image || movie.image || require("../images/imageNotFound.jpg"), this.state.website || movie.website)}
-                            className="btn btn-outline-primary ml-2 pull-right"
-                          >
+                            onClick={() => this.handleMoveFavorite(movie)}
+                            className="btn btn-outline-primary ml-2 pull-right">
                             Save
                           </button>
                         )}
