@@ -1,6 +1,5 @@
 const express = require("express");
 const mongojs = require("mongojs");
-const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const databaseUrl = "mongodb://readonly:turner@ds043348.mongolab.com:43348/dev-challenge";
@@ -8,26 +7,26 @@ const collections = ["Titles"];
 
 // Need Images to display so I used OMD API to get the images and the links
 // since the DB doesn't have them.
-const BASEURL = "https://www.omdbapi.com/?t=";
-const APIKEY = "&apikey=trilogy";
 
 // Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
-var db = mongojs(databaseUrl, collections);
+// Stabilised a connection with MongoDB
+const db = mongojs(databaseUrl, collections);
 db.on("error", function (error) {
   console.log("Database Error:", error);
 });
 
 app.get("/api/movie/:TitleName", function (req, res) {
-    console.log(req.params);
-  // Query: In our database, go to the Movies collection, then "find one with the name from the params"
+
+  // Query: In our database, go to the Movies collection,
+  // then "find one with the name from the params"
   db.Titles.findOne(req.params, function (err, movieDoc) {
     // Log any errors if the server encounters one
     if (err) {
@@ -41,9 +40,8 @@ app.get("/api/movie/:TitleName", function (req, res) {
 });
 
 app.get("/api/all", function (req, res) {
-  let newArr = [];
-  // console.log(req.params);
-  // Query: In our database, go to the Movies collection, then "find one with the name from the params"
+  // Query: In our database, find all the movies and send them to the
+  // client
   db.Titles.find({}, function (err, allMovies) {
     // Log any errors if the server encounters one
     if (err) {
