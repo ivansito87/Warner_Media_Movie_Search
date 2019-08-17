@@ -8,6 +8,7 @@ import API from "../utils/API";
 import {Col, Row, Container} from "../components/Grid";
 import {List} from "../components/List";
 import Nav from "../components/Nav";
+import "./style.css";
 
 
 class Home extends Component {
@@ -104,7 +105,7 @@ class Home extends Component {
         <Container>
           <Row>
             <Col size="md-12">
-              <Jumbotron>
+              <Jumbotron className="fluid">
                 <h1 className="text-center">
                   <strong>Hi, My Name is Ivan Rendon<br/> Welcome to my Movie Search</strong>
                 </h1>

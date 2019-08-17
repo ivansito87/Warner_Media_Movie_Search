@@ -1,3 +1,46 @@
 .jumbotron {
   padding: 100px;
+    background-color: #20164d !important;
+    color: aliceblue !important;
+}
+ .btn {
+     background: #fff;
+     /*border: none;*/
+     color: #8385aa;
+     border: 1px solid #c8cbf2;
+     font-weight: 700;
+     font-size: 17px;
+     padding: 8px 16px;
+     border-radius: 4px;
+     transition: background .12s, color .12s, border-color .12s;
+     outline: 0;
+     cursor: pointer;
+ }
+
+ .card {
+     background-color: #fff;
+     box-shadow: 0 0.4rem 0.8rem -0.1rem rgba(0, 32, 128, .1), 0 0 0 1px #f0f2f7 !important;
+     border-radius: 1.25rem;
+ }
+
+.card-header {
+    padding: 1.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 0 solid transparent;
+    border-top: 1.25rem !important;
+}
+
+.btn-outline-info {
+    background: linear-gradient(130deg, #008de8, #88b2ff);
+    color: aliceblue;
+}
+
+.btn-outline-success {
+    background: linear-gradient(130deg, #56a15c, #a5d275);
+    color: aliceblue;
+}
+
+.btn-outline-warning {
+    background: linear-gradient(130deg, #ffaf0e, #ffc089);
 }
