@@ -14,6 +14,7 @@ class Home extends Component {
   state = {
     books: [],
     image: null,
+    website: null,
     query: "",
     favoriteMovies: [],
     message: "Search For A Movie To Begin!"
@@ -58,7 +59,7 @@ class Home extends Component {
   getImage = title => {
 
     API.image(title)
-      .then(res => this.setState({image: res.data.Poster}))
+      .then(res => this.setState({image: res.data.Poster, website:res.data.Website}))
       .catch(err => console.log(err.message));
 
   };
@@ -70,8 +71,9 @@ class Home extends Component {
 
   };
 
-  handleMoveFavorite = (book, image) => {
+  handleMoveFavorite = (book, image, website) => {
     book.image = image;
+    book.website = website;
     this.setState({favoriteMovies: [...this.state.favoriteMovies, book]}, () => {
       console.log("Shishitaa -->",this.state.favoriteMovies);
     })
@@ -95,6 +97,7 @@ class Home extends Component {
         API.image(movie.TitleName)
           .then(res => {
             movie.image = res.data.Poster;
+            movie.website = res.data.Website;
             this.setState({books: [...this.state.books, movie]})
           })
           .catch(err => console.log(err.message));
@@ -138,7 +141,8 @@ class Home extends Component {
                       key={book.TitleName}
                       TitleName={book.TitleName}
                       description={book.Storylines[0].Description}
-                      image={this.state.image || book.image || "http://izuum.com/noimage.jpg"}
+                      image={this.state.image || book.image || require("../images/imageNotFound.jpg")}
+                      link={this.state.website || book.website}
                       /*subtitle={book.volumeInfo.subtitle}
                       link={book.volumeInfo.infoLink}
                       authors={book.volumeInfo.authors.join(", ")}
@@ -146,7 +150,7 @@ class Home extends Component {
                       image={book.volumeInfo.imageLinks.thumbnail}*/
                       Button={() => (
                         <button
-                          onClick={() => this.handleMoveFavorite(book, this.state.image)}
+                          onClick={() => this.handleMoveFavorite(book, this.state.image || book.image || require("../images/imageNotFound.jpg"), this.state.website || book.website)}
                           className="btn btn-primary ml-2 pull-right"
                         >
                           Save

@@ -18,10 +18,10 @@ function Book({TitleName, subtitle, authors, link, description, image, Button })
         </Col>
       </Row>
       <Row className="mb-3">
-        <Col size="12 sm-4 md-3">
+        <Col size="12 sm-4 md-2">
           <img className="img-thumbnail img-fluid w-200 h-300" src={image} alt={TitleName} />
         </Col>
-        <Col size="12 sm-8 md-9">
+        <Col size="12 sm-8 md-10">
           <p>{description}</p>
         </Col>
       </Row>
