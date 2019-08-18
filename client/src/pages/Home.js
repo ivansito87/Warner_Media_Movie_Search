@@ -84,6 +84,7 @@ class Home extends Component {
 
 
   getThemAll = event => {
+    event.preventDefault();
     API.getAll()
       .then(res => res.data.forEach(movie => {
         API.image(movie.TitleName)
