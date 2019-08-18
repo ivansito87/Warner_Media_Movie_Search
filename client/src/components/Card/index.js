@@ -2,7 +2,9 @@ import React from "react";
 
 function Card({ icon, title, children }) {
   return (
-    <div className="card mt-4">
+    <div className="Question">
+    {/*<div className="card mt-4">*/}
+      <div className="Question__tag">{""}</div>
       <div className="card-header">
         <h3>
           <strong>
@@ -11,6 +13,7 @@ function Card({ icon, title, children }) {
         </h3>
       </div>
       <div className="card-body">{children}</div>
+    {/*</div>*/}
     </div>
   );
 }

@@ -9,5 +9,10 @@ export const List = ({ children }) => (
 );
 
 export function ListItem({ children }) {
-  return <li className="list-group-item">{children}</li>;
+  return (
+    <>
+    {/*<div className="Question__tag">{""}</div>*/}
+    <li className="list-group-item Question">{children}</li>
+  </>
+      );
 }

@@ -11,7 +11,7 @@ class Nav extends Component {
     return (
       <div className="container">
         <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="http://www.timewarner.com/">
             <img src="http://origin-www.timewarner.com/sites/default/files/ckeditor/public/files/att_wm_hz_pref_rgb_pos.png" width="400" height="30"
                  className="d-inline-block align-top" alt="" />
 

@@ -15,7 +15,6 @@ function Form({query, handleInputChange, handleFormSubmit, getThemAll}) {
           placeholder="Ex: 2 Fast & 2 Furious"
           name="query"
           onChange={handleInputChange}
-          required
         />
       </div>
       <div className="pull-right">

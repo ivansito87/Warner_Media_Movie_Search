@@ -1,41 +1,87 @@
 .jumbotron {
-  padding: 100px;
-    background-image: url("../../images/hbo2.jpeg") !important;
+    padding: 100px;
+    background: linear-gradient(130deg, rgba(120, 93, 170, 0), rgba(230, 31, 73, 0), transparent), url("../../images/hbo2.jpeg") no-repeat center;
     color: aliceblue !important;
+    box-shadow: 0 0.4rem 0.6rem 0.1rem rgba(0, 32, 128, .1), 0 0 0 1px #f0f2f7 !important;
 }
- .btn {
-     background: #fff;
-     /*border: none;*/
-     border: none;
-     font-weight: 700;
-     font-size: 17px;
-     padding: 8px 16px;
-     border-radius: 4px;
-     transition: background .12s, color .12s, border-color .12s;
-     outline: 0;
-     cursor: pointer;
- }
 
- .card {
-     background-color: #fff;
-     box-shadow: 0 0.4rem 0.8rem -0.1rem rgba(0, 32, 128, .1), 0 0 0 1px #f0f2f7 !important;
-     border-radius: 1.25rem;
- }
+.btn {
+    background: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background .12s, color .12s, border-color .12s;
+    outline: 0;
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    background: #fff !important;
+    box-shadow: 0 0.4rem 0.6rem -0.1rem rgba(0, 32, 128, .1), 0 0 0 1px #f0f2f7 !important;
+    border-radius: 1.25rem;
+}
 
 .card-header {
-    padding: 1.75rem 1.25rem;
+    background: #fff !important;
+    padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0);
     border-bottom: 0 solid transparent;
     border-top: 1.25rem !important;
 }
 
+.Question__tag {
+    background: linear-gradient(130deg, #745aa7, #f31d3b);
+    position: absolute;
+    top: 0;
+    right: -65px;
+    transform: rotate(45deg);
+    color: #fff;
+    width: 125px;
+    height: 50px;
+}
+
+.Question__tag1 {
+    background: linear-gradient(130deg, #b721ff, #21d4fd);
+    position: absolute;
+    top: 0;
+    right: -65px;
+    transform: rotate(45deg);
+    color: #fff;
+    width: 125px;
+    height: 50px;
+}
+
+.Question {
+    position: relative;
+    background: #fff;
+    padding: 1.5% 2%;
+    border-radius: 12px;
+    box-shadow: 0 0.4rem 0.6rem -0.1rem rgba(0, 32, 128, .1), 0 0 0 1px #f0f2f7 !important;
+    line-height: 1.8;
+    font-size: 18px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
 .btn-outline-info {
+    background: linear-gradient(130deg, rgba(0, 141, 232, 0.55), rgba(136, 178, 255, 0.56));
+    color: #000;
+}
+
+.btn-outline-info:hover {
     background: linear-gradient(130deg, #008de8, #88b2ff);
     color: aliceblue;
 }
 
 .btn-outline-success {
+    background: linear-gradient(130deg, rgba(102, 78, 162, 0.55), rgba(77, 109, 176, 0.55));
+    color: #000;
+}
+
+.btn-outline-success:hover {
     background: linear-gradient(130deg, #664ea2, #4d6db0);
     color: aliceblue;
 }
@@ -46,6 +92,46 @@
     background: linear-gradient(130deg, rgba(120, 93, 170, 0.28), rgba(230, 31, 73, 0.33));
 }
 
-.btn-outline-warning:hover  {
+.btn-warning {
+    margin-right: 40px;
+    color: #000;
+    background: linear-gradient(130deg, rgba(120, 93, 170, 0.45), rgba(230, 31, 73, 0.45));
+}
+
+.btn-light {
+    /*margin-right: 40px;*/
+    color: #000;
+
+    background: linear-gradient(130deg, rgba(245, 61, 2, 0.64), rgba(255, 125, 85, 0.7));
+}
+
+.btn-light:hover {
+    /*margin-right: 40px;*/
+    color: #fff !important;
+    background: linear-gradient(130deg, #f53d02, #ff7d55);
+}
+
+.btn-outline-primary {
+    margin-right: 40px;
+    color: #000;
+    background: linear-gradient(130deg, rgba(86, 161, 92, 0.75), rgba(165, 210, 117, 0.75));
+}
+
+.btn-outline-primary:hover {
+    margin-right: 40px;
+    color: #fff;
+    background: linear-gradient(130deg, #56a15c, #a5d275);
+}
+
+.btn-outline-warning:hover {
     background: linear-gradient(130deg, #785daa, #e61f49);
 }
+
+.list-group-item {
+    display: block;
+    padding: 0.95rem 1.55rem;
+    margin-bottom: 22px;
+    background-color: #fff;
+    border: 1px solid #8385aa;
+}
+
