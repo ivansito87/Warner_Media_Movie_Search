@@ -11,7 +11,6 @@ export const List = ({ children }) => (
 export function ListItem({ children }) {
   return (
     <>
-    {/*<div className="Question__tag">{""}</div>*/}
     <li className="list-group-item Question">{children}</li>
   </>
       );

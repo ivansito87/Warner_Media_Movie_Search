@@ -9,3 +9,10 @@ body {
 p {
     font-size: 18px !important;
 }
+
+.ivan {
+    background: linear-gradient(to right, #EF629F, #f31d3d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bolder;
+}

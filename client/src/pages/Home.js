@@ -106,8 +106,8 @@ class Home extends Component {
           <Row>
             <Col size="md-12">
               <Jumbotron className="fluid">
-                <h1 className="text-center">
-                  <strong>Hi, My Name is Ivan Rendon<br/> Welcome to my Movie Search</strong>
+                <h1 className="text-center display-4 font-weight-bold">
+                  <strong>Hi, My Name is<span className="ivan"> Ivan Rendon</span><br/> Welcome to my Movie Search</strong>
                 </h1>
                 <h2 className="text-center">Search for and Save Movies of your Interest.</h2>
               </Jumbotron>
