@@ -4,7 +4,7 @@ import { Row, Col } from "../Grid";
 import "./style.css";
 import Tilt from "react-tilt";
 
-function Movie({TitleName, subtitle, authors, link, description, image, Button }) {
+function Movie({TitleName, subtitle, actors, genre, release, producer, link, description, image, Button }) {
   return (
     <ListItem>
         <div className="Question__tag1">{""}</div>
@@ -29,17 +29,24 @@ function Movie({TitleName, subtitle, authors, link, description, image, Button }
               easing: "cubic-bezier(.03,.98,.52,.99)",
             }}
           >
-          <a href={link} target="_blank"><img className="img-thumbnail img-thumbnail w-200 h-300 Question mt-3" src={image} alt={TitleName} /></a>
+          <a href={link} target="_blank">
+            <img className="img-thumbnail img-thumbnail w-200 h-300 Question mt-3"
+                 src={image} alt={TitleName} /></a>
           </Tilt>
         </Col>
         <Col size="12 sm-8 md-9 lg-9">
-          <h2 className="font-italic mt-3">{TitleName}</h2>
+          <h2 className="font-italic mt-3 font-weight-bold ivan">{TitleName}</h2>
           {subtitle && <h5 className="font-italic">{subtitle}</h5>}
-          <p className="font-italic small">Written by {authors}</p>
+          <p className="font-italic small">
+            <span className="text-dark font-weight-bold"> Director:</span> {producer} <br />
+            <span className="text-dark font-weight-bold">Released: </span>{release} <br />
+            <span className="text-dark font-weight-bold">Genre: </span>{genre} <br />
+            <span className="text-dark font-weight-bold">Actors: </span>{actors} <br />
+          </p>
           <p className="truncate-text">{description}</p>
               <div className="float-right text-right pull-right">
                 <a className="btn btn-light" target="_blank" rel="noopener noreferrer" href={link}>
-                  Webiste
+                  read more
                 </a>
                 <Button className="pull-right btn-outline-primary"/>
               </div>

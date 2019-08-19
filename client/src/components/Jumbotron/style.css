@@ -13,12 +13,23 @@
     padding: 8px 16px;
     border-radius: 4px;
     transition: background .12s, color .12s, border-color .12s;
+    box-shadow: 0 0.4rem 0.7rem -0.1rem #8385aa, 0 0 0 1px #f0f2f7 !important;
     outline: 0;
     cursor: pointer;
 }
 
-.img-thumbnail{
+.btn:hover {
+    box-shadow: 0 0.2rem 0.5rem -0.1rem #8385aa, 0 0 0 1px #f0f2f7 !important;
+}
+
+.img-thumbnail {
     cursor: pointer;
+    border: 1px solid #8385aa !important;
+}
+
+.img-thumbnail:hover {
+    box-shadow: 0 0.4rem 0.9rem -0.1rem #8385aa, 0 0 0 1px #f0f2f7 !important;
+    border: 2px solid #8385aa !important;
 }
 
 .card {
@@ -73,6 +84,7 @@
 .btn-outline-info {
     background: linear-gradient(130deg, rgba(0, 141, 232, 0.55), rgba(136, 178, 255, 0.56));
     color: #000;
+    transition: 0.2s;
 }
 
 .btn-outline-info:hover {
@@ -83,6 +95,7 @@
 .btn-outline-success {
     background: linear-gradient(130deg, rgba(102, 78, 162, 0.55), rgba(77, 109, 176, 0.55));
     color: #000;
+    transition: 0.2s;
 }
 
 .btn-outline-success:hover {
@@ -93,31 +106,32 @@
 .btn-outline-warning {
     margin-right: 40px;
     color: #000;
+    transition: 0.2s;
     background: linear-gradient(130deg, rgba(120, 93, 170, 0.28), rgba(230, 31, 73, 0.33));
 }
 
 .btn-warning {
     margin-right: 40px;
+    transition: 0.2s;
     color: #000;
     background: linear-gradient(130deg, rgba(120, 93, 170, 0.45), rgba(230, 31, 73, 0.45));
 }
 
 .btn-light {
-    /*margin-right: 40px;*/
-    color: #000;
-
+    color: #51526f;
+    transition: 0.2s;
     background: linear-gradient(130deg, rgba(245, 61, 2, 0.64), rgba(255, 125, 85, 0.7));
 }
 
 .btn-light:hover {
-    /*margin-right: 40px;*/
     color: #fff !important;
     background: linear-gradient(130deg, #f53d02, #ff7d55);
 }
 
 .btn-outline-primary {
     margin-right: 40px;
-    color: #000;
+    color: #51526f;
+    transition: 0.2s;
     background: linear-gradient(130deg, rgba(86, 161, 92, 0.75), rgba(165, 210, 117, 0.75));
 }
 
@@ -139,3 +153,10 @@
     border: 1px solid #8385aa;
 }
 
+button:disabled,
+button[disabled] {
+    box-shadow: none;
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+}

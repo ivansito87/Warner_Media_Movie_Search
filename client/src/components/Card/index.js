@@ -1,13 +1,13 @@
 import React from "react";
 
-function Card({ icon, title, children }) {
+function Card({icon, title, children}) {
   return (
     <div className="Question">
       <div className="Question__tag">{""}</div>
       <div className="card-header">
         <h3>
           <strong>
-            <i className={`fa fa-${icon}`} aria-hidden="true" /> {title}
+            <i className={`fa fa-${icon} ivan`} aria-hidden="true"/> {title}
           </strong>
         </h3>
       </div>

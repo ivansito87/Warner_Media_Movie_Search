@@ -3,7 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import Form from "../components/Form";
 import Movie from "../components/Movie";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/index";
 import API from "../utils/API";
 import {Col, Row, Container} from "../components/Grid";
 import {List} from "../components/List";
@@ -19,7 +19,7 @@ class Home extends Component {
     website: null,
     query: "",
     favoriteMovies: [],
-    message: "Search For A Movie To Begin!"
+    message: "Search for and Save Movies of your Interest"
   };
 
   resetState = () => {
@@ -45,27 +45,33 @@ class Home extends Component {
   };
 
   getMovie = () => {
+    if (!this.state.query) this.setState({message: "🤦🏻‍♂️ You forgot to type a movie 😒"});
     API.getMovie(this.state.query)
       .then(res => {
-        API.image(res.data.TitleName)
-          .then(response => {
-            const movie = res.data;
-            movie.image = response.data.Poster;
-            movie.website = response.data.Website;
-            this.setState({movies: [...this.state.movies, movie]})
-          })
-          .catch(err => console.log(err.message));
+        console.log(res.data);
+        (res.data === null) ? this.setState({message: "Oh Snap! We don't have that one 💩"}) :
+          API.image(res.data.TitleName)
+            .then(response => {
+              const movie = res.data;
+              movie.image = response.data.Poster;
+              movie.website = response.data.Website;
+              this.setState({movies: [...this.state.movies, movie], message: "Hakuna Matata 🥳 we have that one 🎉"})
+            })
+            .catch(err => console.log(err.message));
         console.log("logging state ->", this.state.movies);
       })
       .catch(() =>
         this.setState({
           movies: [],
-          message: "No Movies Found, Try a Different Query"
         })
       );
   };
 
-  handleMoveFavorite = (movie) => {
+  handleMoveFavorite = (event, movie) => {
+    event.target.classList.toggle("disabled"); /// add Class
+    event.target.setAttribute("disabled", "true"); /// set Attribute
+    console.log("buttton", event.target);
+    // if(favori)
     movie.image = movie.image ? movie.image : require("../images/imageNotFound.jpg");
     this.setState({
       favoriteMovies: [...this.state.favoriteMovies, movie]
@@ -77,11 +83,9 @@ class Home extends Component {
     e.preventDefault();
     this.resetState();
     if (!this.state.favoriteMovies.length) {
-      this.setState({message: "Oops! no movies saved  🤡"})
+      this.setState({message: "Hmm, have you saved any 🤔"})
     }
-    console.log(this.state.favoriteMovies);
   };
-
 
   getThemAll = event => {
     event.preventDefault();
@@ -91,6 +95,10 @@ class Home extends Component {
           .then(res => {
             movie.image = res.data.Poster;
             movie.website = res.data.Website;
+            movie.actors = res.data.Actors;
+            movie.genre = res.data.Genre;
+            movie.released = res.data.Released;
+            movie.director = res.data.Director;
             this.setState({movies: [...this.state.movies, movie]})
           })
           .catch(err => console.log(err.message));
@@ -108,9 +116,10 @@ class Home extends Component {
             <Col size="md-12">
               <Jumbotron className="fluid">
                 <h1 className="text-center display-4 font-weight-bold">
-                  <strong>Hi, My Name is<span className="ivan"> Ivan Rendon</span><br/> Welcome to my Movie Search</strong>
+                  <strong><span className="ivan">Hi,</span> My Name is<span
+                    className="ivan"> Ivan Rendon</span><br/> Welcome to my Movie Search</strong>
                 </h1>
-                <h2 className="text-center">Search for and Save Movies of your Interest.</h2>
+                <h1 className="text-center display-5 font-weight-bold">{this.state.message}</h1>
               </Jumbotron>
             </Col>
             <Col size="md-12">
@@ -138,9 +147,13 @@ class Home extends Component {
                         description={movie.Storylines[0].Description}
                         image={movie.image || require("../images/imageNotFound.jpg")}
                         link={movie.website}
+                        producer={movie.director}
+                        release={movie.released}
+                        actors={movie.actors}
+                        genre={movie.genre}
                         Button={() => (
                           <button
-                            onClick={() => this.handleMoveFavorite(movie)}
+                            onClick={(event) => this.handleMoveFavorite(event, movie)}
                             className="btn btn-outline-primary ml-2 pull-right">
                             Save
                           </button>
@@ -149,7 +162,7 @@ class Home extends Component {
                     ))}
                   </List>
                 ) : (
-                  <h2 className="text-center">{this.state.message}</h2>
+                  <h1 className="text-center display-5 font-weight-bold">{this.state.message}</h1>
                 )}
               </Card>
             </Col>
