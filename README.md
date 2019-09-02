@@ -2,7 +2,9 @@
 # Warner Media Movie Search :movie_camera:
 
 A Full-Stack app build with 
-React and MongoDB that that offers the user the ability to search for a movie, the application queries Warner Media's MongoDB and returns information that allows the user to view details of the movie. The application leverages React's state to save the movies that you liked and stores them in it.   
+React and MongoDB that that offers the user the ability to search for a movie, the application queries Warner Media's MongoDB and returns information that allows the user to view details of the movie. The application leverages React's state to save the movies that you liked and stores them in it.    
+
+##### Deployed Version [Here](https://warner-media-movie-search.herokuapp.com)
 
 Those details include:
 * Title
@@ -86,8 +88,7 @@ yarn start
     "TitleName" : "A Man for All Seasons",
     "TitleNameSortable" : "Man for All Seasons, A",
     "_id" : "5376b81fbc028417ac633778"
-      },
-      ...
+      }
       ]
 
   ```
